@@ -11,6 +11,7 @@ import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -40,34 +41,37 @@ public class DubaiTradeFileUtils {
         // Refresh the project to see the new file
         sourceRoot.refresh(false, true);
     }
+//    public void buildAndCreateDTO(Project project, DubaiTradePath dubaiTradePath, Module module,String requestBody) throws IOException {
+//        VirtualFile sourceRoot = LocalFileSystem.getInstance().findFileByPath(project.getBasePath());
+//        if (sourceRoot == null) {
+//            return;
+//        }
+//
+//        // Get the package path and create directories if needed
+//        String packagePath = module.getDtoDirectory() + "/" + dubaiTradePath.getServiceName().toLowerCase();
+//        VirtualFile packageDir = createPackageDirectories(sourceRoot,packagePath);
+//        if (packageDir == null) {
+//            return;
+//        }
+//
+//        // Create the file name
+//        String fileName = dubaiTradePath.getDtoClassName() + ".java";
+//
+//        // Create the file content from the template
+//        String content = dubaiTradeTemplates.dtoTemplate
+//                .replace("{PACKAGE}", dubaiTradePath.getDtoPackage() + "." + dubaiTradePath.getServiceName().toLowerCase())
+//                .replace("{CLASS_NAME}", dubaiTradePath.getDtoClassName());
+//
+//        // Create the file under the package directory
+//        VirtualFile file = packageDir.createChildData(this, fileName);
+//        file.setBinaryContent(content.getBytes());
+//
+//        // Refresh the project to see the new file
+//        sourceRoot.refresh(false, true);
+//    }
 
-    public void buildAndCreateDTO(Project project, DubaiTradePath dubaiTradePath, Module module) throws IOException {
-        VirtualFile sourceRoot = LocalFileSystem.getInstance().findFileByPath(project.getBasePath());
-        if (sourceRoot == null) {
-            return;
-        }
-
-        // Get the package path and create directories if needed
-        String packagePath = module.getDtoDirectory() + "/" + dubaiTradePath.getServiceName().toLowerCase();
-        VirtualFile packageDir = createPackageDirectories(sourceRoot,packagePath);
-        if (packageDir == null) {
-            return;
-        }
-
-        // Create the file name
-        String fileName = dubaiTradePath.getDtoClassName() + ".java";
-
-        // Create the file content from the template
-        String content = dubaiTradeTemplates.dtoTemplate
-                .replace("{PACKAGE}", dubaiTradePath.getDtoPackage() + "." + dubaiTradePath.getServiceName().toLowerCase())
-                .replace("{CLASS_NAME}", dubaiTradePath.getDtoClassName());
-
-        // Create the file under the package directory
-        VirtualFile file = packageDir.createChildData(this, fileName);
-        file.setBinaryContent(content.getBytes());
-
-        // Refresh the project to see the new file
-        sourceRoot.refresh(false, true);
+    public void buildAndCreateDTO(Project project, DubaiTradePath dubaiTradePath, Module module,String requestBody) throws IOException {
+        JsonUtils.convertJsonToJavaClass(requestBody,new File(project.getBasePath() + "/" + module.getAppPath() ),module.getDtoPackage() + "." + dubaiTradePath.getServiceName().toLowerCase(),dubaiTradePath.getDtoClassName());
     }
 
     public void buildAndCreateService(Project project, DubaiTradePath dubaiTradePath, Module module) throws IOException {

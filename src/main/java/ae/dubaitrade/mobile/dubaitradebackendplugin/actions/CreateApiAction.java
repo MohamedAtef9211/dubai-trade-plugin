@@ -34,7 +34,7 @@ public class CreateApiAction extends AnAction {
             DubaiTradePath dubaiTradePath = new DubaiTradePath(dialog.getName(),dialog.getURL(),module);
 
             try {
-                dubaiTradeService.addDubaiTradeClasses(e.getProject(),dubaiTradePath, module);
+                dubaiTradeService.addDubaiTradeClasses(e.getProject(),dubaiTradePath, module ,dialog);
                 dubaiTradeService.createJsonFile(e.getProject(),dubaiTradePath, module,dialog.getResponseText());
                 dubaiTradeService.appendLinesToApplicationProperties(e.getProject(),dubaiTradePath, module);
             } catch (Exception ex) {

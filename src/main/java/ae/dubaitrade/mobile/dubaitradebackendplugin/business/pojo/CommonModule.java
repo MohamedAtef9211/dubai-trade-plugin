@@ -20,5 +20,9 @@ public class CommonModule extends Module {
                 SERVICE_DIRECTORY, CONTROLLER_PACKAGE, CONTROLLER_DIRECTORY,
                 MOCKOON_DIRECTORY, APP_PROPERTIES_PATH,BASE_CONTROLLER_CLASS_NAME);
     }
+    @Override
+    public String getAppPath(){
+        return MODULE_PACKAGE + MAIN_PACKAGE_PATH;
+    }
 
 }

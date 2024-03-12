@@ -21,4 +21,8 @@ public class DpWorldModule extends Module {
                 MOCKOON_DIRECTORY, APP_PROPERTIES_PATH,BASE_CONTROLLER_CLASS_NAME);
     }
 
+    @Override
+    public String getAppPath(){
+        return MODULE_PACKAGE + MAIN_PACKAGE_PATH;
+    }
 }

@@ -67,4 +67,6 @@ public abstract class Module {
     public String getControllerBaseClassName() {
         return controllerBaseClassName;
     }
+
+    public abstract String getAppPath();
 }

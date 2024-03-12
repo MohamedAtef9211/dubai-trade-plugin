@@ -1,0 +1,40 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>ae.dubaitrade.mobile.dubaitrade-backend-plugin</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Dubai Trade Mock</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="support@egabi.com" url="https://www.egabi.com/">Egabi Solutions</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    This plugin helps you generate service classes directly from your mock files in IntelliJ IDEA.
+    How it works:
+        1.Create mock files as usual for your services.
+        2.Use the plugin to automatically generate service classes based on your mocks.
+        3.Focus on implementing the actual logic in your new service classes.
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+    <actions>
+        <action class="ae.dubaitrade.mobile.dubaitradebackendplugin.actions.CreateApiAction"
+                text="DubaiTrade - Create from mocks"
+                icon="/images/logo.svg"
+                id="ae.dubaitrade.mobile.dubaitradebackendplugin.actions.CreateApiAction">
+            <add-to-group group-id="ProjectViewPopupMenu" relative-to-action="NewFile" anchor="before"/>
+        </action>
+    </actions>
+</idea-plugin>
